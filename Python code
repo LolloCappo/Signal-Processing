@@ -1,0 +1,38 @@
+import numpy as np
+
+## FFT
+data = #data to analyze
+dt = #time step
+n = data.shape[1] 
+sampling_frequency = 1/dt
+
+fft = np.fft.rfft(acceleration, n=n, axis=1) * 2/n
+freq = freq = np.fft.rfftfreq(n, dt)
+
+
+
+## FRF
+import pyFRF
+
+FRF = pyFRF.FRF(sampling_freq=sampling_frequency, 
+                n_averages=force.shape[0], 
+                fft_len=force.shape[1], 
+                exc_type='f', 
+                resp_type='a')
+                
+                
+for i in range(force.shape[0]):
+    FRF.add_data(force[i], acceleration[i])
+    
+receptance = FRF.get_FRF(form='receptance')
+frequency = FRF.get_f_axis()
+
+fig, ax = plt.subplots(2, figsize=(20, 8))
+
+ax[0].semilogy(frequency, np.abs(receptance))
+ax[1].plot(frequency, np.angle(receptance))
+
+ax[0].set_xlim(0, 2000), ax[1].set_xlim(0, 2000)
+ax[1].set_xlabel('Frequency [Hz]')
+ax[0].set_ylabel(r'|Receptance [m/N]|')
+ax[1].set_ylabel('Phase [$^\circ$]');

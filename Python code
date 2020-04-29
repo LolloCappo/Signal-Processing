@@ -6,7 +6,7 @@ dt = #time step
 n = data.shape[1] 
 sampling_frequency = 1/dt
 
-fft = np.fft.rfft(acceleration, n=n, axis=1) * 2/n
+fft = np.fft.rfft(data, n=n, axis=1) * 2/n
 freq = freq = np.fft.rfftfreq(n, dt)
 
 

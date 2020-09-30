@@ -7,7 +7,7 @@ n = data.shape[1]
 sampling_frequency = 1/dt
 
 FFT = np.fft.rfft(data, n=n, axis=1) * 2/n
-freq = freq = np.fft.rfftfreq(n, dt)
+freq = np.fft.rfftfreq(n, dt)
 
 plt.plot(freq,np.abs(FFT))
 
